@@ -7,6 +7,11 @@ SIZE = (600,400)
 FPS = 60
 COLOR = (200,200,200)
 
+difficulty = ['легкий','середній','важкий']
+filename = 'settings.json'
+current_index = 0
+main_font = pygame.font.SysFont('Times New Roman', 36)
+
 screen = pygame.display.set_mode(SIZE)
 clock = pygame.time.Clock()
 
@@ -23,13 +28,16 @@ class Button:
         self.text_rect = self.text_surf.get_rect(center=self.rect.center)
         screen.blit(self.text_surf, self.text_rect)
 
-play = Button(200, 80, 200, 50,COLOR, 'PLAY')
-settings = Button(200, 160, 200, 50,COLOR, 'SETTINGS')
-exit = Button(200, 240, 200, 50,COLOR, 'EXIT')
+play = Button(200, 80, 200, 50,COLOR, 'ГРАТИ')
+settings = Button(200, 160, 200, 50,COLOR, 'СКЛАДНІСТЬ')
+exit = Button(200, 240, 200, 50,COLOR, 'ВИЙТИ')
 
 running = True
 
 while running:
+    diff_text = main_font.render('Складність: ' + difficulty[current_index], True, (200,200,200))
+    screen.blit(diff_text, (SIZE[0] // 2 - diff_text.get_width()//2 , 20))
+    
     play.draw()
     settings.draw()
     exit.draw()
